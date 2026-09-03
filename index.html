@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Core Primary SEO Meta Tags -->
+  <title>Preeti to Unicode Converter | नेपाली प्रिती युनिकोड कन्भर्टर | Arun Adhikari</title>
+  <meta name="title" content="Preeti to Unicode Converter | नेपाली प्रिती युनिकोड कन्भर्टर | Arun Adhikari">
+  <meta name="description" content="नेपाली प्रिती फन्टबाट युनिकोड र युनिकोडबाट प्रितीमा सजिलै रूपान्तरण गर्नुहोस्। Free, fast and easy Preeti to Unicode & Unicode to Preeti online converter tool.">
+  <meta name="keywords" content="preeti to unicode, unicode to preeti, nepali converter, nepali typing, arun adhikari, preeti font converter, nepali unicode, प्रिती युनिकोड">
+  <meta name="author" content="Arun Adhikari">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://preeti.arunadhikari.com.np/">
+
+  <!-- Open Graph / Facebook SEO -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://preeti.arunadhikari.com.np/">
+  <meta property="og:title" content="Preeti to Unicode Converter | नेपाली प्रिती युनिकोड कन्भर्टर">
+  <meta property="og:description" content="नेपाली प्रिती फन्टबाट युनिकोड र युनिकोडबाट प्रितीमा तत्काल रूपान्तरण गर्ने आधुनिक अनलाइन टूल।">
+
+  <!-- Twitter SEO -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://preeti.arunadhikari.com.np/">
+  <meta property="twitter:title" content="Preeti to Unicode Converter | नेपाली प्रिती युनिकोड कन्भर्टर">
+  <meta property="twitter:description" content="सजिलै र छिटो Preeti to Unicode तथा Unicode to Preeti रूपान्तरण गर्नुहोस्।">
+
+  <!-- Google Structured Data (Schema.org JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Nepali Preeti to Unicode Converter",
+    "url": "https://preeti.arunadhikari.com.np/",
+    "description": "Fast and free Nepali Preeti font to Unicode and Unicode to Preeti converter tool.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "All",
+    "author": {
+      "@type": "Person",
+      "name": "Arun Adhikari"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: #f1f5f9;
+      color: #1e293b;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .site-header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: white;
+      padding: 18px 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .header-inner {
+      max-width: 950px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-title {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .brand-badge {
+      background-color: #059669;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .domain-tag {
+      font-size: 13px;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-family: monospace;
+    }
+
+    .sub-nav {
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 12px 20px;
+    }
+
+    .nav-inner {
+      max-width: 950px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tab-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .tab-btn {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn.active {
+      background: #1e3a8a;
+      color: white;
+      border-color: #1e3a8a;
+    }
+
+    .hint-text {
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .main-container {
+      max-width: 950px;
+      margin: 25px auto;
+      padding: 0 20px;
+      flex: 1;
+      width: 100%;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+
+    .status-indicator {
+      font-size: 12px;
+      color: #059669;
+      background: #ecfdf5;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    textarea {
+      width: 100%;
+      height: 160px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 17px;
+      line-height: 1.6;
+      outline: none;
+      resize: vertical;
+    }
+
+    textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    #outputText {
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+
+    .control-actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      padding: 10px 20px;
+      font-size: 14.5px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-switch { background-color: #0284c7; color: white; }
+    .btn-danger { background-color: #ef4444; color: white; }
+    .btn-success { background-color: #059669; color: white; }
+
+    .btn-sm {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      color: #334155;
+    }
+
+    /* SEO Article Content */
+    .seo-content {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 24px;
+      margin-top: 30px;
+      line-height: 1.7;
+    }
+
+    .seo-content h1 {
+      font-size: 20px;
+      color: #0f172a;
+      margin-bottom: 12px;
+    }
+
+    .seo-content h2 {
+      font-size: 16px;
+      color: #1e3a8a;
+      margin: 16px 0 8px 0;
+    }
+
+    .seo-content p {
+      font-size: 14px;
+      color: #475569;
+      margin-bottom: 10px;
+    }
+
+    .seo-content ul {
+      padding-left: 20px;
+      font-size: 14px;
+      color: #475569;
+    }
+
+    .site-footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 13.5px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      background: #ffffff;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-title">अरुण अधिकारी</span>
+        <span class="brand-badge">Dual Converter</span>
+      </div>
+      <div class="domain-tag">preeti.arunadhikari.com.np</div>
+    </div>
+  </header>
+
+  <nav class="sub-nav">
+    <div class="nav-inner">
+      <div class="tab-group">
+        <button id="tabPreetiToUni" class="tab-btn active" onclick="setMode('preetiToUni')">
+          <i class="fa-solid fa-keyboard"></i> Preeti ➔ Unicode
+        </button>
+        <button id="tabUniToPreeti" class="tab-btn" onclick="setMode('uniToPreeti')">
+          <i class="fa-solid fa-repeat"></i> Unicode ➔ Preeti
+        </button>
+      </div>
+      <span id="modeHint" class="hint-text">Preeti ➔ Unicode मोड सक्रिय छ</span>
+    </div>
+  </nav>
+
+  <main class="main-container">
+    
+    <div class="card">
+      <div class="card-header">
+        <label id="inputLabel" for="inputText"><strong>प्रीति टाइपिङ / इनपुट बक्स :</strong></label>
+        <button class="btn-sm" onclick="copyInput()"><i class="fa-regular fa-copy"></i> कपि गर्नुहोस्</button>
+      </div>
+      <textarea id="inputText" placeholder="यहाँ प्रिती अनुसार टाइप गर्नुहोस् वा प्रिती फन्टको टेक्स्ट पेस्ट गर्नुहोस्..."></textarea>
+    </div>
+
+    <div class="control-actions">
+      <button class="btn btn-switch" onclick="toggleMode()"><i class="fa-solid fa-repeat"></i> मोड उल्टाउनुहोस्</button>
+      <button class="btn btn-danger" onclick="clearAll()"><i class="fa-solid fa-trash-can"></i> सबै मेटाउनुहोस्</button>
+      <button class="btn btn-success" onclick="copyOutput()"><i class="fa-regular fa-copy"></i> नतिजा कपि गर्नुहोस्</button>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <label id="outputLabel" for="outputText"><strong>तयार भएको युनिकोड :</strong></label>
+        <span class="status-indicator">स्वतः रूपान्तरण</span>
+      </div>
+      <textarea id="outputText" placeholder="कन्भर्ट भएको नतिजा यहाँ स्वतः देखिनेछ..." readonly></textarea>
+    </div>
+
+    <!-- SEO Content Section for Google Ranking -->
+    <article class="seo-content">
+      <h1>नेपाली प्रिती र युनिकोड कन्भर्टर (Preeti to Unicode Converter)</h1>
+      <p>यो अनलाइन टूल परम्परागत नेपाली प्रिती फन्ट (Preeti Font) बाट युनिकोड (Nepali Unicode) मा र युनिकोडबाट प्रिती फन्टमा बदल्न तयार पारिएको हो। यसले कार्यालयका कागजातहरू, अनलाइन समाचार पोर्टल, ब्लग वा सामाजिक सञ्जालमा नेपाली टाइप गर्न मद्दत गर्दछ।</p>
+      
+      <h2>मुख्य विशेषताहरू :</h2>
+      <ul>
+        <li><strong>द्रुत र सुरक्षित :</strong> यो टूल कुनै बाहिरी सर्भरमा नपठाई सिधै तपाईंको ब्राउजरमै चल्छ।</li>
+        <li><strong>दुईतर्फी रूपान्तरण :</strong> Preeti to Unicode र Unicode to Preeti दुवै सुविधाहरू एउटै ठाउँमा।</li>
+        <li><strong>सफा र प्रयोगकर्ता-मैत्री डिजाइन :</strong> मोबाइल र कम्प्युटर दुवैमा सहज प्रयोग गर्न सकिने।</li>
+      </ul>
+    </article>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Arun Adhikari • नेपाली युनिकोड र प्रीति रूपान्तरण टूल</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
