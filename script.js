@@ -1,5 +1,6 @@
-// १. प्रितीबाट युनिकोड म्यापिङ
+// १. प्रितीबाट युनिकोड म्यापिङ (विशेष Alt कोडहरू सहित)
 const preetiToUniMap = {
+  // साधारण अङ्क तथा चिन्हहरू
   '1': '१', '2': '२', '3': '३', '4': '४', '5': '५',
   '6': '६', '7': '७', '8': '८', '9': '९', '0': '०',
   '-': '(', '=': '.',
@@ -19,10 +20,51 @@ const preetiToUniMap = {
   '[': 'ृ', '{': 'ईं', ']': 'े', '}': 'ै',
   ';': 'स', ':': 'स्', "'": 'ु', '"': 'ू',
   ',': ',', '<': '?', '.': '।', '>': 'श्र',
-  '/': 'र', '?': 'रु', '\\': '्', '|': '्र'
+  '/': 'र', '?': 'रु', '\\': '्', '|': '्र',
+
+  // किबोर्ड लेआउटका विशेष Alt कोडहरू (Alt + Number sequences)
+  'Alt+0132': 'ध',
+  'Alt+0133': '‘',
+  'Alt+0218': '’',
+  'Alt+0230': '“',
+  'Alt+0198': '”',
+  'Alt+0150': '–',
+  'Alt+0151': '—',
+  'Alt+0152': '§',
+  'Alt+0177': '±',
+  'Alt+0210': '…',
+  'Alt+0214': '=',
+  'Alt+0247': '÷',
+  'Alt+0171': '«',
+  'Alt+0222': '»',
+  'Alt+0220': '%',
+  'Alt+0219': '!',
+  'Alt+0217': ';',
+  'Alt+0167': 'दृ',
+  'Alt+0203': 'ङ',
+  'Alt+0205': 'ङ',
+  'Alt+0206': 'ङ',
+  'Alt+0221': 'हृ',
+  'Alt+0170': 'ङ',
+  'Alt+0182': 'ङ',
+  'Alt+0139': 'ङ्घ',
+  'Alt+0149': 'ङ',
+  'Alt+0176': 'ङ',
+  'Alt+0155': 'द्र',
+  'Alt+0137': 'भ',
+  'Alt+0231': 'ॐ',
+  'Alt+0136': 'फ',
+  'Alt+0163': 'ε',
+  'Alt+0165': '=',
+  'Alt+0216': 'च',
+  'Alt+0229': 'दू',
+  'Alt+0223': 'द',
+  'Alt+0204': 'ज्ञ',
+  'Alt+0191': 'रू',
+  'Alt+0197': 'ह'
 };
 
-// २. युनिकोडबाट प्रिती म्यापिङ तालिका तयार गर्ने
+// २. युनिकोडबाट प्रिती म्यापिङ तालिका
 const uniToPreetiMap = {
   '१': '1', '२': '2', '३': '3', '४': '4', '५': '5',
   '६': '6', '७': '7', '८': '8', '९': '9', '०': '0',
@@ -37,10 +79,10 @@ const uniToPreetiMap = {
   'ु': "'", 'ू': '"', 'े': ']', 'ै': '}', 'ं': '+',
   'ँ': 'F', 'ः': 'H', '्': '\\', '।': '.', 'अ': 'c',
   'इ': 'O', 'उ': 'p', 'ए': 'P', 'ऋ': 'C', 'त्र': 'q',
-  'क्ष': 'I', 'श्र': '>', 'ईं': '{'
+  'क्ष': 'I', 'श्र': '>', 'ईं': '{', 'ॐ': 'Alt+0231', 'रू': 'Alt+0191'
 };
 
-let currentMode = 'preetiToUni'; // 'preetiToUni' वा 'uniToPreeti'
+let currentMode = 'preetiToUni'; 
 let rawPreetiBuffer = "";
 
 const inputField = document.getElementById("inputText");
@@ -77,28 +119,44 @@ function toggleMode() {
   setMode(currentMode === 'preetiToUni' ? 'uniToPreeti' : 'preetiToUni');
 }
 
-// Preeti to Unicode रूपान्तरण लजिक
+// Preeti to Unicode रूपान्तरण लजिक र व्याकरण मिलाउने
 function convertPreetiToUnicode(str) {
   let res = "";
   for (let i = 0; i < str.length; i++) {
     let ch = str[i];
     res += preetiToUniMap[ch] !== undefined ? preetiToUniMap[ch] : ch;
   }
-  // व्याकरण शुद्धता
-  res = res.replace(/ि([क-ह])/g, '$1ि');
-  res = res.replace(/ि([क-ह]्[क-ह])/g, '$1ि');
+
+  let previous;
+  do {
+    previous = res;
+    res = res.replace(/([क-हत्रज्ञक्षश्रद्यद्वद्क्क-ह्र]*)([ािीुूृेैोौंः्]*)([क-ह])ि(्?[क-ह])?/g, function(all, p1, p2, p3, p4) {
+      return p1 + 'ि' + p2 + p3 + (p4 || '');
+    });
+  } while (res !== previous);
+
+  let chars = res.split('');
+  for (let i = 0; i < chars.length - 1; i++) {
+    if (chars[i + 1] === 'ि') {
+      let temp = chars[i];
+      chars[i] = 'ि';
+      chars[i + 1] = temp;
+      i++;
+    }
+  }
+  res = chars.join('');
+
   res = res.replace(/ाे/g, 'ो');
   res = res.replace(/ाै/g, 'ौ');
+  
   return res;
 }
 
 // Unicode to Preeti रूपान्तरण लजिक
 function convertUnicodeToPreeti(str) {
-  // १. युनिकोडको इकार (ि) लाई अक्षरभन्दा अगाडि सार्ने
   let modified = str.replace(/([क-ह])ि/g, 'l$1');
   modified = modified.replace(/([क-ह]्[क-ह])ि/g, 'l$1');
   
-  // २. ओकार र औकार फुटाउने
   modified = modified.replace(/ो/g, 'ाे');
   modified = modified.replace(/ौ/g, 'ाै');
 
@@ -114,14 +172,16 @@ function convertUnicodeToPreeti(str) {
 inputField.addEventListener("keydown", function(e) {
   if (currentMode === 'preetiToUni') {
     if (e.key === "Backspace") {
-      rawPreetiBuffer = rawPreetiBuffer.slice(0, -1);
-      let val = convertPreetiToUnicode(rawPreetiBuffer);
-      inputField.value = val;
-      outputField.value = val;
+      if (rawPreetiBuffer.length > 0) {
+        rawPreetiBuffer = rawPreetiBuffer.slice(0, -1);
+        let val = convertPreetiToUnicode(rawPreetiBuffer);
+        inputField.value = val;
+        outputField.value = val;
+      }
       e.preventDefault();
       return;
     }
-    if (e.key === " ") {
+    if (e.key === "Spacebar" || e.key === " ") {
       rawPreetiBuffer += " ";
       let val = convertPreetiToUnicode(rawPreetiBuffer);
       inputField.value = val;
@@ -129,7 +189,7 @@ inputField.addEventListener("keydown", function(e) {
       e.preventDefault();
       return;
     }
-    if (preetiToUniMap[e.key] !== undefined) {
+    if (e.key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
       e.preventDefault();
       rawPreetiBuffer += e.key;
       let val = convertPreetiToUnicode(rawPreetiBuffer);
@@ -139,24 +199,23 @@ inputField.addEventListener("keydown", function(e) {
   }
 });
 
-// पेस्ट गर्दा वा टाइप गर्दा तत्काल रूपान्तरण (दुवै मोडका लागि)
 inputField.addEventListener("input", function() {
   if (currentMode === 'uniToPreeti') {
     outputField.value = convertUnicodeToPreeti(inputField.value);
   } else {
-    // यदि प्रयोगकर्ताले कतैबाट सिधै प्रिती पेस्ट गर्छ भने
+    if (inputField.value.length < rawPreetiBuffer.length) {
+      rawPreetiBuffer = inputField.value;
+    }
     outputField.value = convertPreetiToUnicode(inputField.value);
   }
 });
 
-// खाली गर्ने
 function clearAll() {
   rawPreetiBuffer = "";
   inputField.value = "";
   outputField.value = "";
 }
 
-// कपि फङ्सनहरू
 function copyInput() {
   if (!inputField.value) return;
   navigator.clipboard.writeText(inputField.value);
