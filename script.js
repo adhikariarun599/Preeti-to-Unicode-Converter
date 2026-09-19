@@ -134,7 +134,6 @@ function copyInput() {
   alert("इनपुट बक्सको टेक्स्ट कपि भयो!");
 }
 
-// आउटपुट बक्सको टेक्स्ट एकैचोटि कपी गर्ने फङ्सन
 function copyOutput() {
   if (!outputField.value) return;
   navigator.clipboard.writeText(outputField.value);
