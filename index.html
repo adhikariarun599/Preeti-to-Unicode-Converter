@@ -42,6 +42,14 @@
   }
   </script>
 
+  <!-- Preeti Font (WebFont Import) -->
+  <style>
+    @font-face {
+      font-family: 'Preeti';
+      src: url('Preeti.ttf') format('truetype'); /* यदि फन्ट फाइल छ भने */
+    }
+  </style>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
@@ -190,7 +198,7 @@
       border: 1.5px solid #cbd5e1;
       border-radius: 8px;
       padding: 14px;
-      font-size: 17px;
+      font-size: 19px;
       line-height: 1.6;
       outline: none;
       resize: vertical;
@@ -199,6 +207,11 @@
     textarea:focus {
       border-color: #2563eb;
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    /* माथिल्लो इनपुट बक्समा प्रिती फन्ट एप्लाई गर्ने */
+    #inputText {
+      font-family: 'Preeti', sans-serif;
     }
 
     #outputText {
@@ -321,7 +334,7 @@
 
   <main class="main-container">
     
-    <!-- इनपुट कार्ड -->
+    <!-- इनपुट कार्ड (प्रिती फन्ट एप्लाई गरिएको) -->
     <div class="card">
       <div class="card-header">
         <label id="inputLabel" for="inputText"><strong>प्रीति टाइपिङ / इनपुट बक्स :</strong></label>
@@ -336,13 +349,12 @@
       <button class="btn btn-success" onclick="copyOutput()"><i class="fa-regular fa-copy"></i> नतिजा कपि गर्नुहोस्</button>
     </div>
 
-    <!-- आउटपुट कार्ड (कपी आइकन थपिएको) -->
+    <!-- आउटपुट कार्ड (कपी आइकनसहित) -->
     <div class="card">
       <div class="card-header">
         <label id="outputLabel" for="outputText"><strong>तयार भएको युनिकोड :</strong></label>
         <div>
           <span class="status-indicator me-2" style="margin-right: 8px;">स्वतः रूपान्तरण</span>
-          <!-- यहाँ आइकनसहितको कपी बटन राखिएको छ -->
           <button class="btn-sm" onclick="copyOutput()" title="कपी गर्नुहोस्"><i class="fa-regular fa-copy"></i></button>
         </div>
       </div>
