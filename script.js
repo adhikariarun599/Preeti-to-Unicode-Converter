@@ -50,7 +50,6 @@ const modeHint = document.getElementById("modeHint");
 const tabPreetiToUni = document.getElementById("tabPreetiToUni");
 const tabUniToPreeti = document.getElementById("tabUniToPreeti");
 
-// मोड परिवर्तन गर्ने फङ्सन
 function setMode(mode) {
   currentMode = mode;
   clearAll();
@@ -76,7 +75,6 @@ function toggleMode() {
   setMode(currentMode === 'preetiToUni' ? 'uniToPreeti' : 'preetiToUni');
 }
 
-// Preeti to Unicode रूपान्तरण गर्ने लजिक
 function convertPreetiToUnicode(str) {
   let res = "";
   for (let i = 0; i < str.length; i++) {
@@ -84,7 +82,6 @@ function convertPreetiToUnicode(str) {
     res += preetiToUniMap[ch] !== undefined ? preetiToUniMap[ch] : ch;
   }
 
-  // इकार (ि) लाई अक्षरको अगाडि ल्याउने मिलाउने तरिका
   let chars = res.split('');
   for (let i = 0; i < chars.length - 1; i++) {
     if (chars[i + 1] === 'ि') {
@@ -96,14 +93,12 @@ function convertPreetiToUnicode(str) {
   }
   res = chars.join('');
 
-  // ओकार र औकार मिलाउने
   res = res.replace(/ाे/g, 'ो');
   res = res.replace(/ाै/g, 'ौ');
   
   return res;
 }
 
-// Unicode to Preeti रूपान्तरण गर्ने लजिक
 function convertUnicodeToPreeti(str) {
   let modified = str.replace(/([क-ह])ि/g, 'l$1');
   modified = modified.replace(/([क-ह]्[क-ह])ि/g, 'l$1');
@@ -119,7 +114,6 @@ function convertUnicodeToPreeti(str) {
   return res;
 }
 
-// बक्समा टाइप गर्नेबित्तिकै स्वतः कन्भर्ट हुने इभेन्ट
 inputField.addEventListener("input", function() {
   let text = inputField.value;
   if (currentMode === 'preetiToUni') {
@@ -129,22 +123,20 @@ inputField.addEventListener("input", function() {
   }
 });
 
-// सबै खाली गर्ने फङ्सन
 function clearAll() {
   inputField.value = "";
   outputField.value = "";
 }
 
-// इनपुट कपि गर्ने
 function copyInput() {
   if (!inputField.value) return;
   navigator.clipboard.writeText(inputField.value);
   alert("इनपुट बक्सको टेक्स्ट कपि भयो!");
 }
 
-// आउटपुट कपि गर्ने
+// आउटपुट बक्सको टेक्स्ट एकैचोटि कपी गर्ने फङ्सन
 function copyOutput() {
   if (!outputField.value) return;
   navigator.clipboard.writeText(outputField.value);
-  alert("नतिजा कपि भयो!");
+  alert("नतिजा सफलतापूर्वक कपी भयो!");
 }
