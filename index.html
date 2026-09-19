@@ -233,11 +233,19 @@
     .btn-sm {
       background: #f1f5f9;
       border: 1px solid #cbd5e1;
-      padding: 4px 10px;
-      border-radius: 4px;
-      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 13px;
       cursor: pointer;
       color: #334155;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.2s;
+    }
+
+    .btn-sm:hover {
+      background: #e2e8f0;
     }
 
     /* SEO Article Content */
@@ -313,10 +321,11 @@
 
   <main class="main-container">
     
+    <!-- इनपुट कार्ड -->
     <div class="card">
       <div class="card-header">
         <label id="inputLabel" for="inputText"><strong>प्रीति टाइपिङ / इनपुट बक्स :</strong></label>
-        <button class="btn-sm" onclick="copyInput()"><i class="fa-regular fa-copy"></i> कपि गर्नुहोस्</button>
+        <button class="btn-sm" onclick="copyInput()" title="कपी गर्नुहोस्"><i class="fa-regular fa-copy"></i> कपी</button>
       </div>
       <textarea id="inputText" placeholder="यहाँ प्रिती अनुसार टाइप गर्नुहोस् वा प्रिती फन्टको टेक्स्ट पेस्ट गर्नुहोस्..."></textarea>
     </div>
@@ -327,10 +336,15 @@
       <button class="btn btn-success" onclick="copyOutput()"><i class="fa-regular fa-copy"></i> नतिजा कपि गर्नुहोस्</button>
     </div>
 
+    <!-- आउटपुट कार्ड (कपी आइकन थपिएको) -->
     <div class="card">
       <div class="card-header">
         <label id="outputLabel" for="outputText"><strong>तयार भएको युनिकोड :</strong></label>
-        <span class="status-indicator">स्वतः रूपान्तरण</span>
+        <div>
+          <span class="status-indicator me-2" style="margin-right: 8px;">स्वतः रूपान्तरण</span>
+          <!-- यहाँ आइकनसहितको कपी बटन राखिएको छ -->
+          <button class="btn-sm" onclick="copyOutput()" title="कपी गर्नुहोस्"><i class="fa-regular fa-copy"></i></button>
+        </div>
       </div>
       <textarea id="outputText" placeholder="कन्भर्ट भएको नतिजा यहाँ स्वतः देखिनेछ..." readonly></textarea>
     </div>
